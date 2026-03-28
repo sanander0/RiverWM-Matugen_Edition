@@ -1,0 +1,20 @@
+/* Define colors */
+/* === Matugen-generated colors for Waybar === */
+
+@define-color background1 #171c1f;
+@define-color background2 #252b2d;
+
+@define-color separator #40484b;
+
+@define-color warning #ffb4ab;
+@define-color caution #c2c4eb;
+@define-color performance #b3cad4;
+@define-color audio #87d1eb;
+@define-color misc #87d1eb;
+
+@define-color date #c2c4eb;
+
+@define-color work #004e5f;
+@define-color window #87d1eb;
+
+@define-color text #dee3e6;

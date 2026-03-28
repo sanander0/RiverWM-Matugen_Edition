@@ -1,0 +1,214 @@
+[
+  {
+    // MAIN BAR //
+    "layer": "top",
+    "position": "top",
+    "name": "main",
+    "reload_style_on_change": true,
+
+    "margin-top": 3,
+    "margin-left": 3,
+    "margin-right": 3,
+
+    "modules-left": [
+      "custom/logo",
+      "river/tags",
+    ],
+
+    "modules-right": [
+      "group/traym",
+      "custom/spacer1",
+      "cpu",
+      "memory#ram",
+      "temperature",
+      "network#info",
+      "custom/spacer2",
+      "pulseaudio#output",
+      "custom/spacer3",
+      "battery",
+      "custom/spacer4",
+      "clock",
+    ],
+
+    // Modules
+    "temperature": {
+      "interval": 10,
+      "hwmon-path": "/sys/devices/platform/coretemp.0/hwmon/hwmon4/temp1_input",
+      "critical-threshold": 100,
+      "format-critical": "<span foreground='#ff5555'> </span> {temperatureC}°C",
+      "format": "<span foreground='#b5bd68'> </span> {temperatureC}°C"
+    },
+
+    "battery": {
+      "states": {
+        "good": 95,
+        "warning": 30,
+        "critical": 20
+        },
+      "format": "<span foreground='#b5bd68'>{icon}</span> {capacity}%",
+      "format-charging": "<span foreground='#b5bd68'> </span> {capacity}%",
+      "format-plugged": "<span foreground='#b5bd68'> </span> {capacity}%",
+      "format-alt": "{time} <span foreground='#b5bd68'>{icon}</span>",
+      "format-icons": [" ", " ", " ", " ", " "]
+    },
+
+    "group/traym": {
+      "orientation": "horizontal",
+      "modules": ["custom/trayicon", "tray"],
+    },
+
+    "custom/logo": {
+      "format": "<span> </span>",
+      "tooltip": true,
+      "on-click": "pgrep -x wofi && pkill wofi || wofi --show drun -I"
+    },
+    
+    "clock": {
+      "interval": 1,
+      "format": "  {:%H:%M:%S     %a %d.%m}",
+      "tooltip-format": "{calendar}",
+      "calendar": {
+        "weeks-pos": "right",
+        "mode": "month",
+        "format": {
+          "months": "<span color='#cba6f7'><b>{}</b></span>",
+          "days": "<span color='#cdd6f4'><b>{}</b></span>",
+          "weeks": "<span color='#94e2d5'> W{}</span>",
+          "weekdays": "<span color='#f9e2af'><b>{}</b></span>",
+          "today": "<span color='#f5e0dc'><b><u>{}</u></b></span>",
+        },
+      },
+    },
+
+    "cpu": {
+      "interval": 4,
+      "min-length": 6,
+      "format": "<span foreground='#b5bd68'> </span> {usage}%",
+      "states": {
+        "warning": 80,
+        "critical": 95,
+      },
+    },
+
+    "memory#ram": {
+      "interval": 4,
+      "format": "<span foreground='#b5bd68'>󰍛 </span> {percentage}%",
+      "states": {
+        "warning": 80,
+        "critical": 95,
+      },
+      "tooltip": "{}",
+      "tooltip-format": "{used}/{total} GiB",
+    },
+
+    "network#info": {
+      "interval": 2,
+      "format": "<span foreground='#b43003'>󰌙 </span> Offline",
+      "format-wifi": "<span foreground='#b5bd68'>{icon}</span> {bandwidthDownBits}",
+      "format-ethernet": "<span foreground='#5073bf'>󰈀 </span> {bandwidthDownBits}",
+      "min-length": 11,
+      "tooltip": "{}",
+      "tooltip-format-wifi": "{ifname}\n{essid}\n{signalStrength}% \n{frequency} GHz\n󰇚 {bandwidthDownBits}\n󰕒 {bandwidthUpBits}",
+      "tooltip-format-ethernet": "{ifname}\n󰇚 {bandwidthDownBits} \n󰕒 {bandwidthUpBits}",
+      "format-icons": ["󰤫 ", "󰤟 ", "󰤢 ", "󰤥 ", "󰤨 "],
+      "states": {
+        "normal": 25,
+      },
+    },
+
+    "network#up": {
+      "interval": 4,
+      "format": " ",
+      "format-wifi": "󰕒 {bandwidthUpBits}",
+      "format-ethernet": "󰕒 {bandwidthUpBits}",
+      "format-disconnected": " ",
+      "min-length": 11,
+    },
+
+    "network#down": {
+      "interval": 4,
+      "format": "󰇚 {bandwidthDownBits}",
+      "format-wifi": "󰇚 {bandwidthDownBits}",
+      "format-ethernet": "󰇚 {bandwidthDownBits}",
+      "min-length": 11,
+    },
+
+    "river/tags": {
+      "disable-scroll-wraparound": true,
+      "hide-vacant": true,
+      "smooth-scrolling-threshold": 4,
+      "enable-bar-scroll": true,
+      "format": "{icon}",
+      "show-special": true,
+      "special-visible-only": false,
+      "format-icons": {
+        "magic": "",
+        "zellij": "",
+        "10": "󰊴",
+        "lock": "",
+      },
+    },
+
+    "pulseaudio#output": {
+      "format": "{icon} {volume}%",
+      "format-bluetooth": "{icon} {volume}%",
+      "format-source-muted": "{volume}",
+      "format-icons": {
+        "headphone": "",
+        "hands-free": "",
+        "headset": "",
+        "phone": "",
+        "portable": "",
+        "car": "",
+        "default": [" ", "  "],
+      },
+      "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+      "on-click-right": "pwvucontrol & aplay ~/.config/sounds/interact.wav",
+      "on-scroll-up": "sh -c 'vol=$(pactl get-sink-volume @DEFAULT_SINK@ | grep -oP \"\\d+(?=%)\" | head -1); if [ \"$vol\" -lt 100 ]; then pactl set-sink-volume @DEFAULT_SINK@ +2%; else pactl set-sink-volume @DEFAULT_SINK@ 110%; fi'",
+      "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2%",
+      "tooltip": true,
+      "scroll-step": 4,
+    },
+
+    "tray": {
+      "icon-size": 18,
+      "spacing": 8,
+    },
+
+    "custom/spacer": {
+      "format": " ",
+      "tooltip": false,
+    },
+
+    "custom/spacer1": {
+      "format": "",
+      "tooltip": false,
+    },
+
+    "custom/spacer2": {
+      "format": "",
+      "tooltip": false,
+    },
+
+    "custom/spacer3": {
+      "format": "",
+      "tooltip": false,
+    },
+
+    "custom/spacer4": {
+      "format": "",
+      "tooltip": false,
+    },
+
+    "custom/spacer5": {
+      "format": "",
+      "tooltip": false,
+    },
+
+    "custom/spacer6": {
+      "format": "",
+      "tooltip": false,
+    },
+  },
+]
+

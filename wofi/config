@@ -1,0 +1,16 @@
+# Material You colors
+
+background-color=#482900
+text-color=#becc9c
+border-color=#3f4b26
+# Per-mode settings
+
+[mode=do-not-disturb]
+invisible=1
+on-notify=none
+
+[mode=silent]
+on-notify=none
+
+[urgency=high]
+border-color=#93000a

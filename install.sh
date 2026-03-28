@@ -2,11 +2,11 @@
 
 sudo xbps-install -S dbus elogind seatd
 sudo xbps-install -S mesa-dri
-sudo xbps-install -S river Waybar wofi mako
+sudo xbps-install -S river Waybar wofi mako swww matugen
 sudo xbps-install -S noto-fonts-ttf font-awesome
 #sudo xbps-install -S greetd
 
-cp -r river ~/.config/
+cp river/init ~/.config/river/
 cp -r matugen ~/.config/
 cp -r waybar ~/.config/
 cp -r wofi ~/.config/

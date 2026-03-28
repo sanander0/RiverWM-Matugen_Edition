@@ -1,0 +1,20 @@
+/* Define colors */
+/* === Matugen-generated colors for Waybar === */
+
+@define-color background1 {{colors.surface_container_low.default.hex}};
+@define-color background2 {{colors.surface_container_high.default.hex}};
+
+@define-color separator {{colors.outline_variant.default.hex}};
+
+@define-color warning {{colors.error.default.hex}};
+@define-color caution {{colors.tertiary.default.hex}};
+@define-color performance {{colors.secondary.default.hex}};
+@define-color audio {{colors.primary.default.hex}};
+@define-color misc {{colors.primary_fixed_dim.default.hex}};
+
+@define-color date {{colors.tertiary_fixed_dim.default.hex}};
+
+@define-color work {{colors.primary_container.default.hex}};
+@define-color window {{colors.primary.default.hex}};
+
+@define-color text {{colors.on_surface.default.hex}};

@@ -1,29 +1,3 @@
-[font]
-size = 10.0
-
-[font.normal]
-family = "JetBrains Mono"
-style = "Regular"
-
-[font.bold]
-family = "JetBrains Mono"
-style = "Bold"
-
-[font.italic]
-family = "JetBrains Mono"
-style = "Italic"
-
-[font.bold_italic]
-family = "JetBrains Mono"
-style = "Bold Italic"
-
-[window]
-padding = { x = 10, y = 10 }
-
-[cursor.style]
-shape = "Beam"
-blinking = "On"
-
 [colors.primary]
 background = '{{colors.background.default.hex}}'
 foreground = '{{colors.on_surface.default.hex}}'

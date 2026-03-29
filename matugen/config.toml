@@ -24,7 +24,7 @@ output_path = "~/.config/gtk-4.0/colors.css"
 
 [templates.alacritty]
 input_path = '~/.config/matugen/templates/alacritty.toml'
-output_path = '~/.config/alacritty/alacritty.toml'
+output_path = '~/.config/alacritty/colors.toml'
 
 [templates.waybar]
 input_path = '~/.config/matugen/templates/waybar-style.css'
